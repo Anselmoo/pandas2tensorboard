@@ -13,6 +13,7 @@ from torch.utils.tensorboard import SummaryWriter
 
 
 class Pandas2Tensorboard:
+    
     def __init__(
         self,
         log_dir: MutableMapping[Path, str] = None,
@@ -31,6 +32,7 @@ class Pandas2Tensorboard:
         self.initialize()
 
     def initialize(self) -> None:
+        """Initialize the tensorboard writer."""
         self.writer = SummaryWriter(
             log_dir=self.log_dir,
             comment=self.comment,
@@ -106,7 +108,7 @@ class Pandas2Tensorboard:
         remove_nan: bool = False,
         remove_str: bool = False,
     ) -> None:
-        """[summary]
+        """Convert a pandas dataframe to a tensorboard scatter plot.
 
         Args:
             df (pd.DataFrame): [description]
@@ -119,7 +121,7 @@ class Pandas2Tensorboard:
         tag = self.create_tag(group=group, label=x_axis)
         df_x, df_y = self.split_df(df=df, col=x_axis)
 
-        for x_dict, y_dict in zip(df_x.values, df_y.to_dict(orient="records")):
+        for x_dict, y_dict in zip(df_x.to_dict(), df_y.to_dict(orient="records")):
             self.writer.add_hparams({tag: x_dict}, y_dict)
 
     def close(self) -> None:
@@ -171,21 +173,3 @@ class Pandas2Tensorboard:
             str: Tag name as concatenation of group (optional) and label
         """
         return f"{group}/{label}" if group else label
-
-
-if __name__ == "__main__":
-    # import numpy as np
-
-    import seaborn as sns
-
-    df = sns.load_dataset("taxis")
-    pt = Pandas2Tensorboard()
-    pt.timeseries_df(
-        sns.load_dataset("taxis"),
-        time="pickup",
-        label="taxis",
-        remove_nan=True,
-        remove_str=True,
-    )
-    # pt.regular_df(sns.load_dataset("penguins"), group="penguins2", label="penguins2")
-    pt.close()

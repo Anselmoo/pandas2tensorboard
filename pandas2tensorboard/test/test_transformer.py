@@ -54,3 +54,30 @@ class TestLabelGroup:
         pt.regular_df(sns.load_dataset("anagrams"), label="label_only", remove_str=True)
         pt.close()
         assert True
+
+
+class TestTimeSeries:
+    def test_time_series_float(self):
+        pt = p2t.Pandas2Tensorboard()
+        pt.timeseries_df(
+            sns.load_dataset("attention"),
+            time="score",
+            label="attention",
+            remove_nan=True,
+            remove_str=True,
+            time_convert=False,
+        )
+        pt.close()
+        assert True
+
+    def test_time_series_str(self):
+        pt = p2t.Pandas2Tensorboard()
+        pt.timeseries_df(
+            sns.load_dataset("taxis"),
+            time="pickup",
+            label="taxis",
+            remove_nan=True,
+            remove_str=True,
+        )
+        pt.close()
+        assert True
