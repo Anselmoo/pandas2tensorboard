@@ -1,12 +1,12 @@
-"""Test of the Pandas2Tensorboard."""
+"""Test of the Pandas2TensorBoard."""
 import seaborn as sns
 
-from pandas2tensorboard import pandas2tensorboard as p2t
+from Pandas2TensorBoard import Pandas2TensorBoard as p2t
 
 
 def test_scatter():
     """Test of the scatter plot."""
-    pt = p2t.Pandas2Tensorboard()
+    pt = p2t.Pandas2TensorBoard()
     pt.scatter_df(
         sns.load_dataset("anagrams"),
         x_axis="subidr",
@@ -23,7 +23,7 @@ class TestRemove:
 
     def test_remove_false(self):
         """Test of deactivated removing columns and rows."""
-        pt = p2t.Pandas2Tensorboard()
+        pt = p2t.Pandas2TensorBoard()
         pt.regular_df(
             sns.load_dataset("gammas").drop(columns=["ROI"]),
             label="subidr",
@@ -35,7 +35,7 @@ class TestRemove:
 
     def test_remove_true(self):
         """Test of activated removing columns and rows."""
-        pt = p2t.Pandas2Tensorboard()
+        pt = p2t.Pandas2TensorBoard()
         pt.regular_df(
             sns.load_dataset("planets"),
             label="planets",
@@ -51,7 +51,7 @@ class TestLabelGroup:
 
     def test_group(self):
         """Test of group and label."""
-        pt = p2t.Pandas2Tensorboard()
+        pt = p2t.Pandas2TensorBoard()
         pt.regular_df(
             sns.load_dataset("anagrams"), group="group", label="label", remove_str=True
         )
@@ -60,7 +60,7 @@ class TestLabelGroup:
 
     def test_only_label(self):
         """Test of only label."""
-        pt = p2t.Pandas2Tensorboard()
+        pt = p2t.Pandas2TensorBoard()
         pt.regular_df(sns.load_dataset("anagrams"), label="label_only", remove_str=True)
         pt.close()
         assert True
@@ -71,7 +71,7 @@ class TestTimeSeries:
 
     def test_time_series_float(self):
         """Test of time series via timestamp."""
-        pt = p2t.Pandas2Tensorboard()
+        pt = p2t.Pandas2TensorBoard()
         pt.timeseries_df(
             sns.load_dataset("attention"),
             time="score",
@@ -85,7 +85,7 @@ class TestTimeSeries:
 
     def test_time_series_str(self):
         """Test of time series via float."""
-        pt = p2t.Pandas2Tensorboard()
+        pt = p2t.Pandas2TensorBoard()
         pt.timeseries_df(
             sns.load_dataset("taxis"),
             time="pickup",

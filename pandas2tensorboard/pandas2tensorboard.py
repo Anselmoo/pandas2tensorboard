@@ -12,8 +12,8 @@ from typing import Tuple
 from torch.utils.tensorboard import SummaryWriter
 
 
-class Pandas2Tensorboard:
-    """Pandas2Tensorboard."""
+class Pandas2TensorBoard:
+    """Pandas2TensorBoard."""
 
     def __init__(
         self,
@@ -24,7 +24,7 @@ class Pandas2Tensorboard:
         flush_secs: int = 120,
         filename_suffix: str = "",
     ) -> None:
-        r"""Initialize the Pandas2Tensorboard.
+        r"""Initialize the Pandas2TensorBoard.
 
         For more info about the arguments, see:
         https://pytorch.org/docs/stable/tensorboard.html
