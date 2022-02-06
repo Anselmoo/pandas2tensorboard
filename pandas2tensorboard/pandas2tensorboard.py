@@ -1,3 +1,4 @@
+"""Transforms pandas dataframes into TensorBoard compatible summaries."""
 try:
     import modin.pandas as pd
 
@@ -5,15 +6,15 @@ except ImportError:
     import pandas as pd
 
 from pathlib import Path
-from typing import MutableMapping, Tuple
+from typing import MutableMapping
+from typing import Tuple
 
-import numpy as np
-from pandas import DataFrame
 from torch.utils.tensorboard import SummaryWriter
 
 
 class Pandas2Tensorboard:
-    
+    """Pandas2Tensorboard."""
+
     def __init__(
         self,
         log_dir: MutableMapping[Path, str] = None,
@@ -23,6 +24,22 @@ class Pandas2Tensorboard:
         flush_secs: int = 120,
         filename_suffix: str = "",
     ) -> None:
+        r"""Initialize the Pandas2Tensorboard.
+
+        For more info about the arguments, see:
+        https://pytorch.org/docs/stable/tensorboard.html
+
+        Args:
+            log_dir (MutableMapping[Path, str], optional): Name of the `log-directory`.
+                 Defaults to None.
+            comment (str, optional): Comment for the `log-directory`. Defaults to "".
+            purge_step (int, optional): Purge step in case of crashing. Defaults to
+                 None.
+            max_queue (int, optional): Maximum size of the queue. Defaults to 10.
+            flush_secs (int, optional): Flush after seconds. Defaults to 120.
+            filename_suffix (str, optional): Suffix added to all event filenames.
+                 Defaults to "".
+        """
         self.log_dir = log_dir
         self.comment = comment
         self.purge_step = purge_step
@@ -59,7 +76,6 @@ class Pandas2Tensorboard:
             remove_nan (bool, optional): Remove rows with `NaNs` . Defaults to False.
             remove_str (bool, optional): Remove columns with `str`. Defaults to False.
         """
-
         df = self.df_cleaning(df=df, remove_nan=remove_nan, remove_str=remove_str)
         tag = self.create_tag(group=group, label=label)
 
@@ -81,7 +97,8 @@ class Pandas2Tensorboard:
         Args:
             df (pd.DataFrame): Dataframe to convert.
             time (str): Column name of the time column.
-            time_convert (bool, optional): Convert str `timestamp` to `float`. Defaults to True.
+            time_convert (bool, optional): Convert str `timestamp` to `float`.
+                 Defaults to True.
             group (str, optional): Group name for the labels. Defaults to None.
             label (str, optional): Name of the label. Defaults to "".
             remove_nan (bool, optional): Remove rows with `NaNs` . Defaults to False.
@@ -111,8 +128,8 @@ class Pandas2Tensorboard:
         """Convert a pandas dataframe to a tensorboard scatter plot.
 
         Args:
-            df (pd.DataFrame): [description]
-            x_axis (str): [description]
+            df (pd.DataFrame): Dataframe to convert.
+            x_axis (str): Name of the `x-axis` column.
             group (str, optional): Group name for the labels. Defaults to None.
             remove_nan (bool, optional): Remove rows with `NaNs` . Defaults to False.
             remove_str (bool, optional): Remove columns with `str`. Defaults to False.
@@ -125,18 +142,19 @@ class Pandas2Tensorboard:
             self.writer.add_hparams({tag: x_dict}, y_dict)
 
     def close(self) -> None:
+        """Close the tensorboard writer."""
         self.writer.close()
 
     @staticmethod
     def split_df(df: pd.DataFrame, col: str) -> Tuple[pd.DataFrame, pd.DataFrame]:
-        """[summary]
+        """Split a dataframe into two dataframes.
 
         Args:
-            df (pd.DataFrame): [description]
-            col (str): [description]
+            df (pd.DataFrame): Dataframe to convert.
+            col (str): Name of the column to split.
 
         Returns:
-            Tuple[pd.DataFrame, pd.DataFrame]: [description]
+            Tuple[pd.DataFrame, pd.DataFrame]: Tuple of the two splitted dataframes.
         """
         return df[col], df.drop(columns=[col])
 
@@ -144,12 +162,12 @@ class Pandas2Tensorboard:
     def df_cleaning(
         df: pd.DataFrame, remove_nan: bool, remove_str: bool
     ) -> pd.DataFrame:
-        """Remove nan and objects from DataFrame
+        """Remove nan and objects from DataFrame.
 
         Args:
-            df (pd.DataFrame): [description]
-            remove_nan (bool): [description].
-            remove_str (bool): [description].
+            df (pd.DataFrame): Dataframe to convert.
+            remove_nan (bool, optional): Remove rows with `NaNs` . Defaults to False.
+            remove_str (bool, optional): Remove columns with `str`. Defaults to False.
 
         Returns:
             pd.DataFrame: [description]
@@ -163,7 +181,7 @@ class Pandas2Tensorboard:
 
     @staticmethod
     def create_tag(label: str, group: str = None) -> str:
-        """Create tag for tensorboard
+        """Create tag for tensorboard.
 
         Args:
             label (str): Label name

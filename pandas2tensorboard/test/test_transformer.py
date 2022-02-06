@@ -1,9 +1,11 @@
+"""Test of the Pandas2Tensorboard."""
 import seaborn as sns
 
 from pandas2tensorboard import pandas2tensorboard as p2t
 
 
 def test_scatter():
+    """Test of the scatter plot."""
     pt = p2t.Pandas2Tensorboard()
     pt.scatter_df(
         sns.load_dataset("anagrams"),
@@ -17,7 +19,10 @@ def test_scatter():
 
 
 class TestRemove:
+    """Test of removing columns and rows."""
+
     def test_remove_false(self):
+        """Test of deactivated removing columns and rows."""
         pt = p2t.Pandas2Tensorboard()
         pt.regular_df(
             sns.load_dataset("gammas").drop(columns=["ROI"]),
@@ -29,6 +34,7 @@ class TestRemove:
         assert True
 
     def test_remove_true(self):
+        """Test of activated removing columns and rows."""
         pt = p2t.Pandas2Tensorboard()
         pt.regular_df(
             sns.load_dataset("planets"),
@@ -41,7 +47,10 @@ class TestRemove:
 
 
 class TestLabelGroup:
+    """Test of the label and group."""
+
     def test_group(self):
+        """Test of group and label."""
         pt = p2t.Pandas2Tensorboard()
         pt.regular_df(
             sns.load_dataset("anagrams"), group="group", label="label", remove_str=True
@@ -50,6 +59,7 @@ class TestLabelGroup:
         assert True
 
     def test_only_label(self):
+        """Test of only label."""
         pt = p2t.Pandas2Tensorboard()
         pt.regular_df(sns.load_dataset("anagrams"), label="label_only", remove_str=True)
         pt.close()
@@ -57,7 +67,10 @@ class TestLabelGroup:
 
 
 class TestTimeSeries:
+    """Test of time series."""
+
     def test_time_series_float(self):
+        """Test of time series via timestamp."""
         pt = p2t.Pandas2Tensorboard()
         pt.timeseries_df(
             sns.load_dataset("attention"),
@@ -71,6 +84,7 @@ class TestTimeSeries:
         assert True
 
     def test_time_series_str(self):
+        """Test of time series via float."""
         pt = p2t.Pandas2Tensorboard()
         pt.timeseries_df(
             sns.load_dataset("taxis"),
