@@ -41,9 +41,9 @@ into the data fomrat of [TensorBoard][2]. `Pandas2TensorBoard` relies on
 Currently the following types of export from `pandas` to `tensorboard` are
 supported:
 
-- `pd.DataFrame` -> `scalars`
-- `pd.DataFrame` -> `scalars` with timestamp
-- `pd.DataFrame` -> `scatter` via hyperparameters
+- `pd.DataFrame` &rarr; `scalars`
+- `pd.DataFrame` &rarr; `scalars` with timestamp
+- `pd.DataFrame` &rarr; `scatter` via hyperparameters
 
 For initializing the `pandas2tensorboard` library, the current syntax of Torch's
 [tensorboard.SummaryWriter][7] is used.
