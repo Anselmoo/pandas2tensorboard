@@ -48,7 +48,7 @@ pytest-xdist = "^2.5.0"
 black = { version = "^22.6.0", allow-prereleases = true }
 seaborn = "^0.11.2"
 isort = "^5.10.1"
-flake8 = "^5.0.3"
+flake8 = "^5.0.4"
 blacken-docs = "^1.12.1"
 mypy = "^0.971"
 pydocstyle = "^6.1.1"
