@@ -46,7 +46,7 @@ pytest-cov = "^3.0.0"
 pytest-clarity = "^1.0.1"
 pytest-xdist = "^2.5.0"
 black = { version = "^22.6.0", allow-prereleases = true }
-seaborn = "^0.11.2"
+seaborn = "^0.12.1"
 isort = "^5.10.1"
 flake8 = "^5.0.4"
 blacken-docs = "^1.12.1"
