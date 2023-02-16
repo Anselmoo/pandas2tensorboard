@@ -16,11 +16,11 @@ repos:
     rev: 23.1.0
     hooks:
       - id: black
-  - repo: https://github.com/asottile/blacken-docs
-    rev: 1.13.0
-    hooks:
-      - id: blacken-docs
-        additional_dependencies: [black==21.12b0]
+  # - repo: https://github.com/asottile/blacken-docs
+  #  rev: 1.13.0
+  #  hooks:
+  #    - id: blacken-docs
+  #      additional_dependencies: [black==21.12b0]
   - repo: https://github.com/PyCQA/isort.git
     rev: 5.12.0
     hooks:
