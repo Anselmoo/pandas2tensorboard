@@ -42,7 +42,7 @@ intake-omnisci = { version = "^0.1.0", optional = true }
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
-pytest-cov = "^3.0.0"
+pytest-cov = "^4.1.0"
 pytest-clarity = "^1.0.1"
 pytest-xdist = "^2.5.0"
 black = { version = "^22.6.0", allow-prereleases = true }
