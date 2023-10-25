@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Pandas2TensorBoard"
-version = "0.1.1-alpha.1"
+version = "0.1.2"
 description = "Pandas DataFrames converted to TensorBoard Format"
 readme = "README.md"
 authors = ["Anselm Hahn <Anselm.Hahn@gmail.com>"]
@@ -18,7 +18,6 @@ classifiers = [
   "License :: OSI Approved :: MIT License",
   "Operating System :: MacOS",
   "Operating System :: Unix",
-  "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: Implementation :: CPython",

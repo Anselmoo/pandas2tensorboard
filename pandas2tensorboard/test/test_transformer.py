@@ -25,13 +25,12 @@ class TestRemove:
         """Test of deactivated removing columns and rows."""
         pt = p2t.Pandas2TensorBoard()
         pt.regular_df(
-            sns.load_dataset("gammas").drop(columns=["ROI"]),
+            sns.load_dataset("titanic"),
             label="subidr",
             remove_nan=False,
             remove_str=False,
         )
         pt.close()
-        assert True
 
     def test_remove_true(self):
         """Test of activated removing columns and rows."""
