@@ -1,4 +1,5 @@
 """Test of the Pandas2TensorBoard."""
+
 import seaborn as sns
 
 from pandas2tensorboard import pandas2tensorboard as p2t
