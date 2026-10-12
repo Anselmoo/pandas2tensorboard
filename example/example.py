@@ -1,4 +1,5 @@
 """Example for the use of Pandas2TensorBoard."""
+
 import seaborn as sns
 import tensorboard
 
