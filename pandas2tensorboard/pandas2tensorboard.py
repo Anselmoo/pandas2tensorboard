@@ -1,4 +1,5 @@
 """Transforms pandas dataframes into TensorBoard compatible summaries."""
+
 try:
     import modin.pandas as pd
 
